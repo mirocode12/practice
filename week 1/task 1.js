@@ -13,7 +13,10 @@ let people = [
     {name: 'Alice', pay: 501, gender: 'F'},
     {name: 'Bob', pay: 412, gender: 'M'},
     {name: 'Charlie', pay: 439, gender: 'F'},
-    {name: 'Dave', pay: 390, gender: 'M'}
+    {name: 'Dave', pay: 390, gender: 'M'},
+    {name: 'Elle', pay: 439, gender: 'F'},
+    {name: 'Frank', pay: 439, gender: 'M'},
+    {name: 'Georgina', pay: 439, gender: 'F'},
 ];
 
 function totalPay(eployee){
@@ -21,3 +24,18 @@ function totalPay(eployee){
 }
 
 console.log(totalPay(people));
+
+/* Write a function that count how many people in the array of people have the specified gender */
+
+function countGender(gender) {
+    return people.reduce(function(count, person) {
+      if (person.gender === gender) {
+        return count + 1;
+      } else {
+        return count;
+      }
+    }, 0);
+  }
+
+  console.log(countGender('M'));
+  console.log(countGender('F'));
