@@ -59,4 +59,28 @@ function getFactors(number) {
 
 getFactors(90); // returns [1, 90, 2, 45, 3, 30, 5, 18, 6, 15, 9, 10]
 
+/** Write a function called `findlongestPalindrome` that takes in a string and returns the
+ * longest palindrome in the string. If there are multiple palindromes of the same lenth, the
+ * function should return the first one that it finds.
+ */
 
+function findlongestPalindrome(str) {
+  let longestPalindrome = "";
+  if (isPalindrome(str)) {
+    return str;
+  } else {
+    let words = str.split(" ");
+    let palindromes = words.filter((word) => isPalindrome(word));
+    if (palindromes.length !== 0) {
+      palindromes.forEach((word) => {
+        if (word.length > longestPalindrome.length) {
+          longestPalindrome = word;
+        }
+      });
+    }
+  }
+  return longestPalindrome;
+}
+
+findlongestPalindrome("racecar is the best car");
+findlongestPalindrome("racecar is the best baraccarab");
