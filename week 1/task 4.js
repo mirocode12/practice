@@ -28,9 +28,11 @@ sortWords(["aaple", "mango", "banana", "apple", "cherry"]);
  */
 
 function analyzeString(str) {
-  return (
-    numberOfVowels(str) + " " + numberOfConsonants(str) + " " + longestWord(str)
-  );
+  return ({
+    numVowels: numberOfVowels(str),
+    numConsonants: numberOfConsonants(str),
+    longestWord: longestWord(str),
+  });
 }
 
 function numberOfVowels(str) {
@@ -42,14 +44,35 @@ function numberOfConsonants(str) {
 }
 
 function longestWord(str) {
-  let words = str.split(' ');
+  let words = str.split(" ");
   let longestWord = words[0];
   words.forEach((element) => {
-    if(element.length > longestWord.length){
-        longestWord = element;
+    if (element.length > longestWord.length) {
+      longestWord = element;
     }
   });
   return longestWord;
 }
 
 analyzeString("this is a test.");
+analyzeString("Hello, world!");
+
+/** Write a function that takes in a string and returns an object with the following properties
+ * `numCharacters`: the total number of characters in the string
+ * `numWords`: the total number of words in the string
+ * `avgWordLength`: the average lenght of the words in the string
+ */
+
+function analyzeText(str){
+    return (
+        {
+            numCharacters: str.length,
+            numWords: str.split(' ').length,
+            avgWordLenght: this
+        }
+    )
+}
+
+analyzeText("this is a test");
+
+
