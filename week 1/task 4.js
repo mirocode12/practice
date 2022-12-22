@@ -118,3 +118,15 @@ function findVariance(arr){
 
 analyzeNumbers([2,3,5,7,10]); // returns min: 2, max: 10, mean: 5.4, variance: 8.24
 
+/** Write a function that takes an array of integers as an argument and returns the sum of the squares of
+ * the even numbers in the array
+ */
+
+function sumOfSquares(arr){
+    let evenNumbers = arr.filter(num => num % 2 === 0);
+    let squares = evenNumbers.map(num => Math.pow(num, 2));
+    return squares.reduce((acc,cur) => acc + cur,0);
+}
+
+sumOfSquares([1,2,3,4,5,6]); // returns 56
+
