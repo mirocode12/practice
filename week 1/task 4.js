@@ -68,11 +68,53 @@ function analyzeText(str){
         {
             numCharacters: str.length,
             numWords: str.split(' ').length,
-            avgWordLenght: this
+            avgWordLenght: str.length / str.split(' ').length
         }
     )
 }
 
 analyzeText("this is a test");
+analyzeText("Hello, World!");
 
+function analyzeNumbers(arr){
+    return (
+        {
+            min: findMin(arr),
+            max: findMax(arr),
+            mean: findMean(arr),
+            variance: findVariance(arr),
+        }
+    )
+}
+
+function findMin(arr){
+    let min = arr[0];
+    for(i = 1; i < arr.length; i++){
+        if(arr[i] < min){
+            min = arr[i];
+        }
+    }
+    return min;
+}
+
+function findMax(arr){
+    let max = arr[0];
+    for(i = 1; i < arr.length; i++){
+        if(arr[i] > max){
+            max = arr[i];
+        }
+    }
+    return max;
+}
+
+function findMean(arr){
+    return arr.reduce((acc, cur) => acc + cur, 0) / arr.length;
+}
+
+function findVariance(arr){
+    let mean = findMean(arr);
+    return arr.map(num => Math.pow((num - mean), 2)).reduce((acc, cur )=> acc + cur, 0) / arr.length;
+}
+
+analyzeNumbers([2,3,5,7,10]); // returns min: 2, max: 10, mean: 5.4, variance: 8.24
 
