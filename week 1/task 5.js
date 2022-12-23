@@ -12,7 +12,9 @@ function decodeMorse(code) {
   if (regex.test(code)) {
     let morseWords = code.split("  ");
     let morseLetters = morseWords.map((word) => word.split(" "));
-    let word, words = [], letters = [];
+    let word,
+      words = [],
+      letters = [];
     for (i = 0; i < morseLetters.length; i++) {
       for (j = 0; j < morseLetters[i].length; j++) {
         letters.push(convertLetter(morseLetters[i][j]));
@@ -21,7 +23,7 @@ function decodeMorse(code) {
       words.push(word);
       letters = [];
     }
-    console.log(words)
+    console.log(words);
     return words.join(" ");
   } else {
     return code + " is not a Morse code";
@@ -29,8 +31,7 @@ function decodeMorse(code) {
 }
 
 function convertLetter(letter) {
-
-    // not sure are these real morse codes
+  // not sure are these real morse codes
   switch (letter) {
     case "-":
       return "T";
@@ -98,3 +99,27 @@ function convertLetter(letter) {
 }
 
 decodeMorse("-- .. .-. ---  .. ...  -... . ... -");
+
+/** Write a function called uniqueCharacters that takes in a string as a
+ * parameter and returns a Boolean value indicating whether or not all of
+ * the characters in the string are unique. Your function should ignore
+ *  spaces and should be case-insensitive. */
+
+function uniqueCharacters(str) {
+  str = str.toLowerCase();
+  let seenChar = {};
+  for (i = 0; i < str.length; i++) {
+    /* looping through all letters and if character is not seen add it to obj `seenChar`
+     * as property, if character is seen return false */
+    if (!seenChar.hasOwnProperty(str[i])) {
+      let proName = str[i];
+      seenChar[proName] = str[i];
+      console.log(seenChar);
+    } else {
+      return false;
+    }
+  }
+  return true;
+}
+uniqueCharacters("abcde"); // return true
+uniqueCharacters("abcdd"); // return false
