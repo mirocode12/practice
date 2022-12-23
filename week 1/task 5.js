@@ -7,6 +7,7 @@ Each word in the message is separated by a double space
 An underscore represents a space in the message 
 */
 
+/** Idea here is too long to bother explaining it right now :) */
 function decodeMorse(code) {
   const regex = /[-. ]+$/;
   if (regex.test(code)) {
@@ -127,21 +128,61 @@ uniqueCharacters("abcdd"); // return false
 /** Write a function findDuplicate(array) that takes in an array of integers and
  * returns the first duplicate element that it encounters. If there are no
  *  duplicates, the function should return null.
- * 
+ *
  *  Use a data structure (such as an object or an array) to keep track of which
  *  elements you have seen so far */
 
-function findDuplicate(array) {
-    let dumplicates = {}, propName;
-    for(i = 0; i < array.length; i++){
-        propName = array[i];
-        if(!dumplicates.hasOwnProperty(propName)){
-            dumplicates[propName] = propName;
-        }else{
-            return "duplicate found: " + propName;
-        }
-    }
-    return null;
-  }
+/** Idea here is to record all seen numbers as property of object, if object has
+ * property it means number is already seen and function return duplicate, if not
+ * function returns null;
+ */
 
-  findDuplicate([1,2,3,5,6,3,7,8,8]);
+function findDuplicate(array) {
+  let dumplicates = {},
+    propName;
+  for (i = 0; i < array.length; i++) {
+    propName = array[i];
+    if (!dumplicates.hasOwnProperty(propName)) {
+      dumplicates[propName] = propName;
+    } else {
+      return "duplicate found: " + propName;
+    }
+  }
+  return null;
+}
+
+findDuplicate([1, 2, 3, 5, 6, 3, 7, 8, 8]);
+
+/** Write a function maxSubarraySum(array, num) that takes in an array of
+ * integers and a positive integer num and returns the maximum sum of num
+ * consecutive elements in the array. */
+
+/** Idea here is to have left and right pointer with spread(window) between
+ *  them equals given `num`, move that window to the end of array and calculate
+ * sum of all numbers in that window, record highest sum and return it when 
+ * window reaches end of the array.
+ */
+function maxSubarraySum(array, num) {
+  let max = 0;
+  if (num > array.length) {
+    return null;
+  } else if (num === array.length) {
+    return sum(array);
+  } else {
+    let left = 0,
+      curSum = 0;
+    for (i = num; i <= array.length; i++) {
+      curSum = sum(array.slice(left, i));
+      if (curSum > max) {
+        max = curSum;
+      }
+      left++;
+    }
+    return max;
+  }
+}
+
+function sum(array) {
+  return array.reduce((acc, cur) => acc + cur, 0);
+}
+maxSubarraySum([1, 2, 5, 2, 8, 1, 5], 4); // return 17
