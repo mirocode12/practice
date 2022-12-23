@@ -123,3 +123,25 @@ function uniqueCharacters(str) {
 }
 uniqueCharacters("abcde"); // return true
 uniqueCharacters("abcdd"); // return false
+
+/** Write a function findDuplicate(array) that takes in an array of integers and
+ * returns the first duplicate element that it encounters. If there are no
+ *  duplicates, the function should return null.
+ * 
+ *  Use a data structure (such as an object or an array) to keep track of which
+ *  elements you have seen so far */
+
+function findDuplicate(array) {
+    let dumplicates = {}, propName;
+    for(i = 0; i < array.length; i++){
+        propName = array[i];
+        if(!dumplicates.hasOwnProperty(propName)){
+            dumplicates[propName] = propName;
+        }else{
+            return "duplicate found: " + propName;
+        }
+    }
+    return null;
+  }
+
+  findDuplicate([1,2,3,5,6,3,7,8,8]);
