@@ -29,3 +29,19 @@ function uniqueElements(array) {
 
 uniqueElements([1, 2, 3, 4, 1, 2, 3, 1, 1, 6, 5]); // returns [4,5,6]
 
+/** Write a function `validatePassword(password)` that takes in a string and returns
+ *  a boolean indicating whether or not the password is valid. A password is
+ *  considered valid if it meets the following criteria:
+ *
+ *      It is at least 8 characters long.
+ *      It contains at least one lowercase letter (a-z).
+ *      It contains at least one uppercase letter (A-Z).
+ *      It contains at least one number (0-9).
+ */
+
+function validatePassword(password) {
+  const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]{8,}$/;
+  return regex.test(password);
+}
+
+validatePassword("mirosal12Gv");
