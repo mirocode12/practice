@@ -45,3 +45,28 @@ function validatePassword(password) {
 }
 
 validatePassword("mirosal12Gv");
+
+/** Write a function `longestSubstring(string)` that takes in a string and returns the
+ *  length of the longest substring without repeating characters. */
+
+function longestSubstring(string) {
+  let left = 0,
+    longestStr = 0,
+    count = 0;
+  for (i = 0; i <= string.length; i++) {
+    if (string.slice(left, i).includes(string[i])) {
+      if (i !== left) {
+        left++;
+        i--;
+      }
+    } else {
+      if (longestStr < i - left) {
+        longestStr = i - left;
+      }
+    }
+  }
+  return longestStr;
+}
+longestSubstring('abcabcbb') //returns 3
+longestSubstring('bbbbb') // returns 1
+longestSubstring('pwwkew') //returns 3
