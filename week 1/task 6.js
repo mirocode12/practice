@@ -67,6 +67,29 @@ function longestSubstring(string) {
   }
   return longestStr;
 }
-longestSubstring('abcabcbb') //returns 3
-longestSubstring('bbbbb') // returns 1
-longestSubstring('pwwkew') //returns 3
+longestSubstring("abcabcbb"); //returns 3
+longestSubstring("bbbbb"); // returns 1
+longestSubstring("pwwkew"); //returns 3
+
+/** Write a function `countPairs(array)` that takes in an array of integers and returns 
+ * the number of pairs of integers in the array that have a difference of k.
+
+ *For example, given the input array [1, 7, 5, 9, 2, 12, 3] and a value of 2, the function
+ *should return 3, since there are three pairs of integers in the array that have a 
+ *difference of 2 ((1, 3), (3, 5), and (5, 7)).
+ */
+
+ function countPairs(array, k) {
+    let count = 0;
+    let seen = {};
+  
+    for (let i = 0; i < array.length; i++) {
+      const n = array[i];
+      if (seen[n - k]) count++;
+      if (seen[n + k]) count++;
+      seen[n] = true;
+    }
+  
+    return count;
+  }
+  countPairs([1, 7, 5, 9, 2, 12, 3], 2); // return 4
