@@ -12,22 +12,23 @@ function longestPrefix(array) {
   let run = true,
     letterNum = 0,
     prefix = "";
-  while (run) {
-    // letters
-    for (i = 0; i < array.length - 1; i++) {
-      // words
-      console.log(
-        `${array[i][letterNum]} + ${array[i + 1][letterNum]} + ${array.length} `
-      );
-      if (array[i][letterNum] !== array[i + 1][letterNum]) {
-        run = false;
-        return prefix;
+  if (array.length > 1) {
+    while (run) {
+      // letters
+      for (i = 0; i < array.length - 1; i++) {
+        // words
+        if (array[i][letterNum] !== array[i + 1][letterNum] || array.length === letterNum) {
+          run = false;
+          return array[0].slice(0,letterNum);
+        }
       }
+      letterNum++;
     }
-    prefix += array[i][letterNum];
-    letterNum++;
   }
   return prefix;
 }
 
-longestPrefix(["miroslav", "miandic", "miroslav"]);
+longestPrefix(["miroslav", "miandic", "miroslav"]); // return 'mi'
+longestPrefix(["miroslav", "mi", "m"]);             // return 'm'
+longestPrefix(["", "", ""]);                        // return ''
+longestPrefix([""]);                                // return ''
