@@ -17,9 +17,12 @@ function longestPrefix(array) {
       // letters
       for (i = 0; i < array.length - 1; i++) {
         // words
-        if (array[i][letterNum] !== array[i + 1][letterNum] || array.length === letterNum) {
+        if (
+          array[i][letterNum] !== array[i + 1][letterNum] ||
+          array.length === letterNum
+        ) {
           run = false;
-          return array[0].slice(0,letterNum);
+          return array[0].slice(0, letterNum);
         }
       }
       letterNum++;
@@ -29,6 +32,39 @@ function longestPrefix(array) {
 }
 
 longestPrefix(["miroslav", "miandic", "miroslav"]); // return 'mi'
-longestPrefix(["miroslav", "mi", "m"]);             // return 'm'
-longestPrefix(["", "", ""]);                        // return ''
-longestPrefix([""]);                                // return ''
+longestPrefix(["miroslav", "mi", "m"]); // return 'm'
+longestPrefix(["", "", ""]); // return ''
+longestPrefix([""]); // return ''
+
+/** Given a string `str` containing just characters '(, ), [, ], { and }, determine
+ * if the input string is valid.
+ *
+ * An input string is valid if:
+ * Open brackets must be closed by the same type of brackets,
+ * Open brackets must be closed in correct order,
+ * Every close bracket has a corresponding open bracket of the same type
+ */
+
+/** Idea here is to iterate through string characters if character is open bracket add corresponding
+ * closing bracket to another array `brackets`, if bracket in string array is closing then check
+ * if it matches last input in `brackets` arrray, if it doesn't match, return false, if matches
+ * then remove last imput in `bracket` array with pop method and continoue looping through string array
+ * until last index, once execution is out of loop it returns true if brackets array is emtpy, which
+ * in this case means all string inputs are valid.
+ */
+
+function isValid(str) {
+  let brackets = [];
+  str = str.split("");
+  for (i = 0; i < str.length; i++) {
+    if (str[i] === "(") brackets.push(")");
+    else if (str[i] === "[") brackets.push("]");
+    else if (str[i] === "{") brackets.push("}");
+    else if (brackets[brackets.length - 1] !== str[i]) return false;
+    else brackets.pop();
+  }
+  return brackets.length === 0;
+}
+
+isValid("((()}))"); // return false
+isValid("(())()[]{()}"); // returns true
