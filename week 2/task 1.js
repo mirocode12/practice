@@ -1,5 +1,4 @@
-/**  Write a function that takes in a string of roman letters that represent intigers
- * and convert it to integer.
+/**  Write a function that takes in a string of roman numerals and convert it to integer.
  */
 
 function romanToInt(string) {
@@ -61,3 +60,18 @@ removeDuplicates([1, 1, 2, 3, 4, 4, 5, 6, 6, 7, 8, 10, 11, 11, 12]);
 // return [1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, '_', '_', '_', '_']
 
 
+/**  Given a sorted array of distinct integers and a target value, return index if the target is found.
+ * if not, return the index where it would be if it were inserted in order.
+ */
+
+function searchInsert(nums, target){
+    for(i = 0; i < nums.length; i++){
+        if(nums[i] == target){
+            return i;
+        }else if(nums[i] > target){
+            return i;
+        }
+    }
+    return nums.length;
+}
+searchInsert([1,3,4,6], 2) // returns 1
