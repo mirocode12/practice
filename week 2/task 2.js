@@ -24,7 +24,6 @@ function removeElement(nums, val) {
 removeElement([0, 1, 2, 2, 3, 0, 4, 2], 2);
 // returns [0, 0, 1, 3, 4, '_', '_', '_']
 
-
 /** You are given two integer arrays nums1 and nums2, sorted in non-decreasing order, and two
  *  integers m and n, representing the number of elements in nums1 and nums2 respectively.
 
@@ -36,11 +35,22 @@ removeElement([0, 1, 2, 2, 3, 0, 4, 2], 2);
  * nums2 has a length of n.
  */
 
-function merge (nums1, m, nums2, n) {
-    for(i = 0; i < n; i++){
-        nums1[m+i] = nums2[i];
-    }
-    return nums1.sort((a,b) => a - b);
-};
+function merge(nums1, m, nums2, n) {
+  for (i = 0; i < n; i++) {
+    nums1[m + i] = nums2[i];
+  }
+  return nums1.sort((a, b) => a - b);
+}
 
-merge([1,2,3,0,0,0], 3, [2,5,6], 3) // returns [1, 2, 2, 3, 5, 6]
+merge([1, 2, 3, 0, 0, 0], 3, [2, 5, 6], 3); // returns [1, 2, 2, 3, 5, 6]
+
+/** Previous task but without using sort method */
+
+function merge(nums1, m, nums2, n) {
+  let insertPos = n + m - 1;
+  n--;
+  m--;
+  while (n >= 0) {
+    nums1[insertPos--] = nums1[m] > nums2[n] ? nums1[m--] : nums2[n--];
+  }
+}
