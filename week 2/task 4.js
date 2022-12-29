@@ -47,3 +47,17 @@ function equalFrequency(word) {
 }
 
 equalFrequency("aaabbbcc");
+
+/** Reverse integer */
+
+function reverseInt(num){
+  let revNum = "";
+  num = num.toString();
+  for (i = num.length - 1; i >= 0; i--){
+    revNum += num[i];
+  }
+
+  return parseInt(revNum);
+}
+
+reverseInt(12345);
